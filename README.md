@@ -6,15 +6,27 @@ This repository is a variant of the [espressif/esp32-arduino-lib-builder](https:
 
 It contains modifications:
 
+- Needs install of **Add-on**: [twischi/addOns-esp32_AR_lib-builder](https://github.com/twischi/addOns-esp32_AR_lib-builder)
+
+  - Hint: It is included in Run-Build section below.
+
 - Get it running in ***macOS***
 
-- Redirects Terminal output infos to serveral files to see what is going on during build without get flooded.
+- Runs the **script** ```postBuild_AggregatedFolders.sh``` what is located here: ```/../addOns-esp32_AR_lib-builder/```
+
+  - Hint: **Needs** the script intalled:
+    - One folder UP: ```/../``` (from folder executing the build.sh)
+    - Expecting to find: ```addOns-esp32_AR_lib-builder```
+
+- Redirects Terminal output infos to serveral files to see what is going on during build without get flooded:
   - log_errors.txt : Errors of any kind.
   - log_instEnviroment.txt : Log when loading and build the enviroment.
   - log_idfBuild.txt : Log when bulding with ipf.py
   - log_pythonBuild.txt: : Log when building with python3.
 
 - Using ```osascript``` - what is ***macOS***-specific - to open the ouputs in diffrent terminals.
+
+
 
 ## To used with ***macOS***:
 
@@ -52,7 +64,9 @@ It contains modifications:
 ### Run build on macOS
 
 ```bash
-git clone https://github.com/twischi/esp32-arduino-lib-builder && cd esp32-arduino-lib-builder
+git clone https://github.com/twischi/esp32-arduino-lib-builder
+git clone https://github.com/twischi/addOns-esp32_AR_lib-builder.git
+cd esp32-arduino-lib-builder
 ./build.sh
 ```
 
