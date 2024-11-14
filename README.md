@@ -14,7 +14,9 @@ It contains modifications:
   - log_idfBuild.txt : Log when bulding with ipf.py
   - log_pythonBuild.txt: : Log when building with python3.
 
-## To used with macOS...
+- Using ```osascript``` - what is ***macOS***-specific - to open the ouputs in diffrent terminals.
+
+## To used with ***macOS***:
 
 ### It is tested with:
 
