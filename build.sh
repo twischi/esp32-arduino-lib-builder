@@ -112,13 +112,13 @@ echo "TARGET(s): ${TARGET[@]}"
 
 mkdir -p dist
 rm -f "log_*.txt" # remove old log files if any exists
-touch log_errors.txt && touch log_instEnviroment.txt && touch log_idfBuild.txt && touch log_pythonBuild.txt
+touch log_errors.txt && touch log_instEnviroment.txt && touch log_idfBuild.txt && touch log_pythonBuild.txt && touch log_osascript.txt
 
 if [ $SKIP_ENV -eq 0 ]; then
     echo "* Installing/Updating ESP-IDF and all components..."
     # update components from git
-    osascript -e 'tell application "Terminal" to do script "tail -n 20 -f '$(realpath log_errors.txt)'"'
-    osascript -e 'tell application "Terminal" to do script "tail -n 20 -f '$(realpath log_instEnviroment.txt)'"'
+    osascript -e 'tell application "Terminal" to do script "tail -n 20 -f '$(realpath log_errors.txt)'"' >> log_osascript.txt
+    osascript -e 'tell application "Terminal" to do script "tail -n 20 -f '$(realpath log_instEnviroment.txt)'"' >> log_osascript.txt
     ./tools/update-components.sh 1>> log_instEnviroment.txt 2>> log_errors.txt
     if [ $? -ne 0 ]; then exit 1; fi
 
@@ -135,7 +135,7 @@ else
     source ./tools/config.sh 1>> log_instEnviroment.txt 2>> log_errors.txt
 fi
 
-osascript -e 'tell application "Terminal" to do script "tail -n 20 -f '$(realpath log_idfBuild.txt)'"'
+osascript -e 'tell application "Terminal" to do script "tail -n 20 -f '$(realpath log_idfBuild.txt)'"' >> log_osascript.txt
 if [ "$BUILD_TYPE" != "all" ]; then
     if [ "$TARGET" = "all" ]; then
         echo "ERROR: You need to specify target for non-default builds"
@@ -303,7 +303,7 @@ for component in `ls "$AR_MANAGED_COMPS"`; do
 done
 
 # update package_esp32_index.template.json
-osascript -e 'tell application "Terminal" to do script "tail -n 20 -f '$(realpath log_pythonBuild.txt)'"'
+osascript -e 'tell application "Terminal" to do script "tail -n 20 -f '$(realpath log_pythonBuild.txt)'"' >> log_osascript.txt
 if [ "$BUILD_TYPE" = "all" ]; then
     echo "* Generating package_esp32_index.template.json..."
     python3 ./tools/gen_tools_json.py -i "$IDF_PATH" -j "$AR_COMPS/arduino/package/package_esp32_index.template.json" -o "$AR_OUT/" 1>> log_pythonBuild.txt 2>> log_errors.txt

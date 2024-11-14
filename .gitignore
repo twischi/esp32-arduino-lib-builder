@@ -2,6 +2,7 @@ log_errors.txt
 log_instEnviroment.txt
 log_idfBuild.txt
 log_pythonBuild.txt
+log_osascript.txt
 esp-idf
 components/arduino
 out

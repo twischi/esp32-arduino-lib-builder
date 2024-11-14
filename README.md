@@ -6,25 +6,37 @@ This repository is a variant of the [espressif/esp32-arduino-lib-builder](https:
 
 It contains modifications:
 
-- Needs install of **Add-on**: [twischi/addOns-esp32_AR_lib-builder](https://github.com/twischi/addOns-esp32_AR_lib-builder)
-
-  - Hint: It is included in Run-Build section below.
-
-- Get it running in ***macOS***
-
-- Runs the **script** ```postBuild_AggregatedFolders.sh``` what is located here: ```/../addOns-esp32_AR_lib-builder/```
-
-  - Hint: **Needs** the script intalled:
-    - One folder UP: ```/../``` (from folder executing the build.sh)
-    - Expecting to find: ```addOns-esp32_AR_lib-builder```
-
 - Redirects Terminal output infos to serveral files to see what is going on during build without get flooded:
   - log_errors.txt : Errors of any kind.
   - log_instEnviroment.txt : Log when loading and build the enviroment.
   - log_idfBuild.txt : Log when bulding with ipf.py
   - log_pythonBuild.txt: : Log when building with python3.
 
+- Modified ```/tools/config.sh``` to use **standerd [IDF](https://github.com/espressif/esp-idf/branches) & [Adruiono](https://github.com/espressif/arduino-esp32/branches)-Branches** in case you don't set his only our own with ```build.sh```-options.
+
+    ```bash
+    if [ -z $IDF_BRANCH ]; then
+      IDF_BRANCH="release/v5.3"
+    fi
+
+    if [ -z $AR_PR_TARGET_BRANCH ]; then
+      AR_PR_TARGET_BRANCH="release/v3.1.x"
+    fi
+    ```
+
+- Get it running in ***macOS***
+
 - Using ```osascript``` - what is ***macOS***-specific - to open the ouputs in diffrent terminals.
+
+- Needs install of **Add-on**: [twischi/addOns-esp32_AR_lib-builder](https://github.com/twischi/addOns-esp32_AR_lib-builder)
+
+  - Hint: It is included in Run-Build section below.
+
+- Runs the **script** ```postBuild_AggregatedFolders.sh``` what is located here: ```/../addOns-esp32_AR_lib-builder/```
+
+  - Hint: **Needs** the script intalled:
+    - One folder UP: ```/../``` (from folder executing the build.sh)
+    - Expecting to find: ```addOns-esp32_AR_lib-builder```
 
 
 
